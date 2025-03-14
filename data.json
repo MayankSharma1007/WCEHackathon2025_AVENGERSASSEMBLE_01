@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1741982184676,
+    "author": "You",
+    "location": "Your Location",
+    "content": "nice",
+    "image": "/uploads/1741982184672-uIsTKZsJPHUuaiVJn+YVKbqoxWFAa7G6kTHtm9_t2HA=.png",
+    "likes": 1,
+    "comments": 0,
+    "time": "Just now"
+  },
+  {
+    "id": 1741982690272,
+    "author": "You",
+    "location": "Your Location",
+    "content": "hello",
+    "likes": 0,
+    "comments": 0,
+    "time": "Just now"
+  },
+  {
+    "id": 1741984903576,
+    "author": "You",
+    "location": "Your Location",
+    "content": "hi",
+    "likes": 0,
+    "comments": 0,
+    "time": "Just now"
+  }
+]
