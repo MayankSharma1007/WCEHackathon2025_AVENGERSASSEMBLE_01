@@ -23,6 +23,8 @@ interface TrendingItem {
   time: string;
   title: string;
   image: string;
+  url: string;
+  hashtags: string[];
 }
 
 const trendingItems: TrendingItem[] = [
@@ -33,14 +35,18 @@ const trendingItems: TrendingItem[] = [
     title:
       "IMD predicts rain for Delhi-NCR, parts of north India on Holi | Weather updates",
     image: "/images/trending1.jpg",
+    url: "https://www.msn.com/en-in/news/India/imd-predicts-rain-for-delhi-ncr-parts-of-north-india-on-holi-weather-updates/ar-AA1AT8Oo?ocid=BingNewsVerp",
+    hashtags: ["#HoliWeather", "#DelhiNCR"],
   },
   {
     id: 202,
-    source: "Indian Express",
+    source: "News18",
     time: "2d",
     title:
       "Weather Update: IMD Warns Of 2 Cyclonic Formations, Heavy Rain Likely Across 18 States",
     image: "/images/trending2.jpg",
+    url: "https://www.news18.com/india/weather-update-imd-warns-of-2-cyclonic-formations-heavy-rain-likely-across-18-states-ws-ad-9257043.html",
+    hashtags: ["#Cyclones", "#HeavyRain"],
   },
   {
     id: 203,
@@ -49,6 +55,8 @@ const trendingItems: TrendingItem[] = [
     title:
       "Weather update: IMD predicts rainfall in these states till March 15 due to cyclones...",
     image: "/images/trending3.jpg",
+    url: "https://www.indiatvnews.com/news/india/weather-update-imd-predicts-rainfall-in-these-states-till-march-15-due-to-cyclones-check-complete-forecast-2025-03-13-980417",
+    hashtags: ["#Rainfall", "#IMD"],
   },
 ];
 
@@ -405,21 +413,38 @@ export default function CommunityPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="p-4 space-y-3">
-                    <div className="relative w-full h-40">
-                      <Image
-                        src={item.image}
-                        alt="Trending item image"
-                        fill
-                        className="object-cover rounded-md"
-                      />
-                    </div>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <span>{item.source}</span>
-                      <span>{item.time}</span>
-                    </div>
-                    <h3 className="font-semibold text-sm">{item.title}</h3>
-                  </Card>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="no-underline hover:shadow-lg transition-shadow"
+                  >
+                    <Card className="p-4 space-y-3">
+                      <div className="relative w-full h-40">
+                        <Image
+                          src={item.image}
+                          alt="Trending item image"
+                          fill
+                          className="object-cover rounded-md"
+                        />
+                      </div>
+                      <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <span>{item.source}</span>
+                        <span>{item.time}</span>
+                      </div>
+                      <h3 className="font-semibold text-sm">{item.title}</h3>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {item.hashtags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="text-xs font-medium text-blue-600 border border-blue-600 rounded-full px-2 py-0.5"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </Card>
+                  </a>
                 </motion.div>
               ))}
             </div>
