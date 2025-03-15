@@ -170,7 +170,6 @@ export default function CommunityPage() {
   };
 
   const handleLike = async (postId: number) => {
-    // Dummy like function: simply increment local like count
     setPosts((prevPosts) =>
       prevPosts.map((post) =>
         post.id === postId ? { ...post, likes: post.likes + 1 } : post
@@ -219,7 +218,6 @@ export default function CommunityPage() {
   };
 
   const handleComment = (postId: number) => {
-    // Dummy handler for comment button
     toast({
       title: "Info",
       description: "Comment functionality not implemented.",
@@ -227,7 +225,7 @@ export default function CommunityPage() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 sm:p-6 min-h-screen">
       {/* Small Create Post Button */}
       <div className="flex justify-end mb-4">
         <Button
@@ -274,7 +272,7 @@ export default function CommunityPage() {
                 />
               </div>
               {image && (
-                <div className="relative w-full max-w-md mx-auto">
+                <div className="relative w-full max-w-full sm:max-w-md mx-auto">
                   <Image
                     src={image}
                     alt="Preview"
@@ -313,9 +311,9 @@ export default function CommunityPage() {
       >
         <h1 className="text-2xl font-bold mb-6">Community</h1>
         <Tabs defaultValue="feed" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="feed">Feed</TabsTrigger>
-            <TabsTrigger value="trending">Trending</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2 p-2 sm:p-0">
+            <TabsTrigger value="feed" className="text-sm sm:text-base">Feed</TabsTrigger>
+            <TabsTrigger value="trending" className="text-sm sm:text-base">Trending</TabsTrigger>
           </TabsList>
 
           {/* FEED TAB */}
@@ -348,7 +346,7 @@ export default function CommunityPage() {
                         />
                       </div>
                     )}
-                    <div className="flex gap-4">
+                    <div className="flex flex-wrap gap-4 sm:gap-2">
                       <Button
                         variant="ghost"
                         size="sm"
@@ -356,35 +354,32 @@ export default function CommunityPage() {
                       >
                         {likedPosts.has(post.id) ? (
                           <ThumbsUpIcon
-                            className="h-4 w-4 mr-2 fill-current text-blue-500"
+                            className="h-4 w-4 mr-2 sm:mr-0 fill-current text-blue-500"
                             strokeWidth={1.5}
                           />
                         ) : (
                           <ThumbsUp
-                            className="h-4 w-4 mr-2"
+                            className="h-4 w-4 mr-2 sm:mr-0"
                             strokeWidth={1.5}
                           />
                         )}
-                        {post.likes}
+                        <span className="hidden sm:inline">{post.likes}</span>
                       </Button>
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => handleComment(post.id)}
                       >
-                        <MessageSquare
-                          className="h-4 w-4 mr-2"
-                          strokeWidth={1.5}
-                        />
-                        Comment
+                        <MessageSquare className="h-4 w-4 mr-2 sm:mr-0" strokeWidth={1.5} />
+                        <span className="hidden sm:inline">Comment</span>
                       </Button>
                       <Button
                         variant="ghost"
                         size="sm"
                         onClick={() => handleShare(post)}
                       >
-                        <Share2 className="h-4 w-4 mr-2" strokeWidth={1.5} />
-                        Share
+                        <Share2 className="h-4 w-4 mr-2 sm:mr-0" strokeWidth={1.5} />
+                        <span className="hidden sm:inline">Share</span>
                       </Button>
                       {post.author === "You" && (
                         <Button
@@ -392,8 +387,8 @@ export default function CommunityPage() {
                           size="sm"
                           onClick={() => handleDelete(post.id)}
                         >
-                          <Trash2 className="h-4 w-4 mr-2" strokeWidth={1.5} />
-                          Delete
+                          <Trash2 className="h-4 w-4 mr-2 sm:mr-0" strokeWidth={1.5} />
+                          <span className="hidden sm:inline">Delete</span>
                         </Button>
                       )}
                     </div>
@@ -405,7 +400,7 @@ export default function CommunityPage() {
 
           {/* TRENDING TAB */}
           <TabsContent value="trending" className="mt-4">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:gap-3 sm:grid-cols-2 md:grid-cols-3">
               {trendingItems.map((item, index) => (
                 <motion.div
                   key={item.id}
