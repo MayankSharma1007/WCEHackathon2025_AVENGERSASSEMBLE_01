@@ -305,9 +305,9 @@ export function AQIDashboard() {
   }
 
   const sampleHistoricalData = [
-    { timestamp: "2025-03-15", aqi: 145 },
-    { timestamp: "2025-03-15", aqi: 154 },
-    { timestamp: "2025-03-15", aqi: 148 },
+    { timestamp: "2025-03-15T05:30:00", aqi: 145 },
+    { timestamp: "2025-03-15T07:00:00", aqi: 154 },
+    { timestamp: "2025-03-15T09:30:00", aqi: 148 },
   ];
 
   return (
